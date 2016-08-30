@@ -30,9 +30,7 @@ module.exports = function (grunt) {
         dist: 'dist',
         hostName: 'localhost',
         port: 9999,
-        reload: 35729,
-        initName: 'BASE_APP',
-        newName: null;
+        reload: 35729
 
     };
 
@@ -488,19 +486,6 @@ module.exports = function (grunt) {
                         }
                     ]
                 }
-            },
-            rename: {
-                files: {
-                    '<%= appConfig.src %>/*/**': '<%= appConfig.src %>/*/**'
-                },
-                options: {
-                    replacements: [
-                        {
-                            pattern: appConfig.initName,
-                            replacement: appConfig.newName
-                        }
-                    ]
-                }
             }
         },
 
@@ -724,17 +709,5 @@ module.exports = function (grunt) {
 
     grunt.registerTask('doc', ['jsdoc','jsdoc2md']);
 
-    grunt.registerTask('dub_thee', 'A sample task that logs stuff.', function(newName) {
-
-        appConfig.newName = newName;
-
-        if (arguments.length === 0) {
-            grunt.log.writeln('You forgot the name of the app...');
-        } else {
-            grunt.task.run('string-replace', 'rename');
-            grunt.log.writeln("Your app has been dubbed "+ newName + ", go forth and make a great app...");
-        }
-
-    });
 
 };
